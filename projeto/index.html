@@ -4,15 +4,176 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/estilos.css">
-
     <title>Mini Portfólio</title>
   </head>
   <body>
+    <style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+
+
+
+      body{
+    background-image: url(../imagens/imagens/fundo001.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+     
+    color: #f3f3f3;
+    font-size: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px;
+}
+
+.cartao{
+    background-color: #070d12a5;
+    width: 370px;
+    border: 2px solid #2168afd5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cartao .minhas-informacoes img {
+    width: 96px;
+    height: 96px;
+}
+
+.cartao .minhas-informacoes{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cartao .minhas-informacoes img{
+    border-radius: 50px;
+    border: 4px groove #158962;    
+}
+
+.cartao .minhas-informacoes .nome{
+    font-size: 22px;
+}
+
+.cartao .minhas-informacoes .cargo{
+    font-size: 18px;
+    color: #b8bbc5;
+}
+
+.cartao .conteudo{
+    margin-top: 15px;
+}
+
+.cartao .abas{
+    display: flex;
+}
+
+.cartao .abas .aba{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.cartao .abas img{
+    width: 30px;
+}
+
+.cartao .abas .aba.selecionado{
+    background-color: #262626;
+}
+
+.cartao .informacoes-abas{
+    background-color: #262626;
+}
+
+.cartao .abas .aba:hover{
+    background-color: #414141;
+}
+
+.informacoes-abas .informacao{
+    min-height: 260px;
+    padding: 15px;
+    display: none;
+}
+
+.informacoes-abas .informacao.selecionado{
+    display: block;
+}
+
+.informacoes-abas .sub-titulo{
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.informacoes-abas .descricao{
+    font-size: 18px;
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+.informacoes-abas .descricao span{
+    color: #02d08f;
+}
+
+.redes-sociais{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.redes-sociais li a{    
+    width: 250px;
+    display: block;
+    color: #f3f3f3;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.redes-sociais li a:hover{
+    opacity: 0.8;
+}
+
+.redes-sociais .curriculo{
+    background-color: #06c185;
+}
+
+.redes-sociais .linkedin{
+    background-color: #1d87bd;
+}
+
+.redes-sociais .github{
+    background-color: #545454;
+}
+    </style>
     <main class="cartao">
       <div class="minhas-informacoes">
         <img src="./imagens/imagens/minhafoto.jpg" alt="foto de perfil" />
@@ -62,6 +223,38 @@
       </div>
     </main>
 
-    <script src="./js/index.js"></script>
+    <script>
+
+const abas = document.querySelectorAll(".aba");
+
+abas.forEach(aba => {
+     aba.addEventListener("click", function() {
+
+        if(aba.classList.contains("selecionado")){
+            return;
+        }
+
+        selecionarAba(aba)
+        mostrarInformacoesDaAba(aba)
+    });
+});
+
+function selecionarAba(aba) {
+     const abaSelecionada = document.querySelector(".aba.selecionado");
+    abaSelecionada.classList.remove("selecionado");
+
+     aba.classList.add("selecionado");
+}
+
+function mostrarInformacoesDaAba(aba){
+     const informacaoSelecionada = document.querySelector(".informacao.selecionado");
+    informacaoSelecionada.classList.remove("selecionado");
+
+    const idDoElementoDeInformacoesDaAba = `informacao-${aba.id}`
+
+    const informacaoASerMostrada = document.getElementById(idDoElementoDeInformacoesDaAba)
+    informacaoASerMostrada.classList.add("selecionado")
+}
+    </script>
   </body>
 </html>
